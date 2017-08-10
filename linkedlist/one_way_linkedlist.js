@@ -74,7 +74,7 @@ function createList(){
     //显示全部节点
     _this.show = function(){
         if(head == null) {
-            alert("nothing");
+            console.log("LinkList is empty");
             return 0;
         }
         var body = document.getElementsByTagName("body")[0];
@@ -106,6 +106,23 @@ function createList(){
         _preappend(trth, table);
         body.appendChild(table);
         return 1;
+    }
+    // 反转链表方向
+    _this.reverse = function (node, preNode) {
+	    if (head == null) {
+	        console.log("LinkList is empty");
+	        return false;
+	    }
+	    var __node = node || head;
+	    var __preNode = preNode || null;
+	    var next = __node.next;
+	    __node.next = __preNode;
+	    if (next != null) {
+	        arguments.callee(next, __node);
+	    }else {
+	        head = __node;
+	    }
+	    return true;
     }
     return _this;
 }
