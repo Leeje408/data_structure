@@ -14,7 +14,6 @@ function powerSet(array, index, result) {
         result.unshift(cache)
     }
     result.unshift(tmp)
-    console.log(JSON.stringify(result))
     if (index == 0) {
         return result
     }
@@ -28,7 +27,18 @@ function printPowerSet(array) {
      * 二进制位 001 则打印 1
      * 此处二进制第一位表示为元素在集合中的位置
      */
-    
+    var len = array.length
+    var total = 1<<len
+    // i = 1 跳过空子集情况
+    for(var i = 0; i < total; i++) {
+        var tmp = []
+        for(var j = 0; j < len; j++) {
+            if((i>>j & 1) == 1) {
+                tmp.push(array[j])
+            }
+        }
+        console.log(JSON.stringify(tmp))
+    }
 }
 
 function _test_(array) {
